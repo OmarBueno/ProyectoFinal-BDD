@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AdministradorArticulosController">
+   <children>
+      <Button fx:id="btnNuevoArticulo" layoutX="47.0" layoutY="353.0" mnemonicParsing="false" onAction="#nuevoArticulo" prefHeight="26.0" prefWidth="118.0" text=" Nuevo Articulo">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEditar" layoutX="181.0" layoutY="353.0" mnemonicParsing="false" onAction="#editarPedido" prefHeight="26.0" prefWidth="112.0" text="Editar">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminar" layoutX="307.0" layoutY="353.0" mnemonicParsing="false" onAction="#eliminarArticulo" prefHeight="26.0" prefWidth="112.0" text="Eliminar">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSalir" layoutX="436.0" layoutY="353.0" mnemonicParsing="false" onAction="#salirArticulo" prefHeight="26.0" prefWidth="112.0" text="Salir">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="268.0" layoutY="23.0" text="Articulos">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tablaArticulos" layoutX="9.0" layoutY="60.0" prefHeight="268.0" prefWidth="580.0">
+        <columns>
+          <TableColumn fx:id="clmNombre" prefWidth="89.0" text="Nombre" />
+          <TableColumn fx:id="clmDescripcion" prefWidth="95.0" text="Descripcion" />
+            <TableColumn fx:id="clmPrecio" prefWidth="74.0" text="Precio" />
+            <TableColumn fx:id="clmLeche" prefWidth="112.0" text="Leche" />
+            <TableColumn fx:id="clmExtra" prefWidth="128.0" text="Extra" />
+            <TableColumn fx:id="clmCrema" prefWidth="81.0" text="Crema Batida" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

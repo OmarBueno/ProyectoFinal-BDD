@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AdministradorExtraController">
+   <children>
+      <Button fx:id="btnNuevoCExtra" layoutX="53.0" layoutY="353.0" mnemonicParsing="false" onAction="#nuevoExtra" prefHeight="26.0" prefWidth="112.0" text="Nuevo Extra">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEditar" layoutX="181.0" layoutY="353.0" mnemonicParsing="false" onAction="#editarCExtra" prefHeight="26.0" prefWidth="112.0" text="Editar">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminar" layoutX="307.0" layoutY="353.0" mnemonicParsing="false" onAction="#eliminarCExtra" prefHeight="26.0" prefWidth="112.0" text="Eliminar">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSalir" layoutX="436.0" layoutY="353.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="112.0" text="Salir">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="268.0" layoutY="23.0" text="Extra">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblExtra" layoutX="9.0" layoutY="65.0" prefHeight="257.0" prefWidth="582.0">
+        <columns>
+          <TableColumn fx:id="clmId" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="clmNombre" prefWidth="463.0" text="nombre" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
