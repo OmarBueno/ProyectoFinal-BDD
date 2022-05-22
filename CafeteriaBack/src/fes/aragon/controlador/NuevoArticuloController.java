@@ -49,7 +49,6 @@ public class NuevoArticuloController extends BaseController implements Initializ
 	// Event Listener on Button[#btnAceptar].onAction
 	@FXML
 	public void aceptarNuevo(ActionEvent event) {
-
 		try {
 			Articulo art = new Articulo();
 			art.setNombre(this.txtNombre.getText());

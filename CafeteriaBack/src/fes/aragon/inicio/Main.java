@@ -14,7 +14,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Pane root = FXMLLoader.load(getClass().getResource("/fes/aragon/fxml/InicioCafeteria.fxml"));
+			Pane root = FXMLLoader.load(getClass().getResource("/fes/aragon/fxml/AdministradorAceptar.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

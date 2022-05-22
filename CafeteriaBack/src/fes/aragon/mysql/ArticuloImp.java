@@ -61,6 +61,7 @@ public class ArticuloImp<E> implements IBaseDatos<E>{
 		solicitud.setBoolean(6, ats.isCrema());
 		solicitud.executeUpdate();
 		ResultSet resultado = solicitud.getGeneratedKeys();
+		
 		solicitud.close();
 		resultado.close();				
 	}

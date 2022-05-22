@@ -19,12 +19,12 @@
             <Font name="Georgia" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnAceptar" layoutX="207.0" layoutY="145.0" mnemonicParsing="false" onAction="#aceptarNuevoUsuario" text="Aceptar">
+      <Button fx:id="btnAceptar" layoutX="207.0" layoutY="145.0" mnemonicParsing="false" onAction="#aceptarExtra" text="Aceptar">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnSalir" layoutX="327.0" layoutY="145.0" mnemonicParsing="false" onAction="#salirNuevoUsuario" prefHeight="26.0" prefWidth="66.0" text="Salir">
+      <Button fx:id="btnSalir" layoutX="327.0" layoutY="145.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="66.0" text="Salir">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
