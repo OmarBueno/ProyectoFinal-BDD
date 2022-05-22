@@ -27,6 +27,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
 
 public class NuevoArticuloController extends BaseController implements Initializable {
+
 	@FXML
 	private TextField txtNombre;
 	@FXML
@@ -54,10 +55,6 @@ public class NuevoArticuloController extends BaseController implements Initializ
 			art.setNombre(this.txtNombre.getText());
 			art.setDescripcion(this.txtDescripcion.getText());
 			art.setPrecio(Double.valueOf(txtPrecio.getText()));
-			art.setLeche(this.cmbTipoLeche.getValue());
-			art.setCrema(this.chkCremaBatida.isSelected());
-			art.setExtra(this.cmbExtra.getValue());
-			art.setCantidad(Integer.parseInt(this.txtCantidad.getText()));
 			ObservableList<Articulo> grupo = Articulos.getInstancia().getGrupoArticulos();
 			grupo.add(art);
 			ArticuloImp<Articulo> cn = new ArticuloImp<>();
@@ -76,21 +73,5 @@ public class NuevoArticuloController extends BaseController implements Initializ
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ExtraImp<Extra> cnn = new ExtraImp<>();
-		try {
-			ArrayList<Extra> extras = cnn.consulta();
-			Extra tmpExtra = new Extra();
-			tmpExtra.setId(0);
-			tmpExtra.setExtra("Selecciona un tipo");
-			this.cmbExtra.getItems().add(tmpExtra);
-			for (Extra extra : extras) {
-				this.cmbExtra.getItems().add(extra);
-			}
-			String[] leches = { "Selecciona un tipo", "ENTERA", "LIGHT", "DESLACTOSADA", "ALMENDRA", "SOYA", "COCO" };
-			cmbTipoLeche.getItems().addAll(leches);
-		} catch (Exception e) {
-			e.printStackTrace();
-			this.ventanaEmergente("Mensaje", "Error en la aplicación", "Consultar al administrador");
-		}
 	}
 }

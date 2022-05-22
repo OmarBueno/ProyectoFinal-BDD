@@ -33,6 +33,7 @@ public class AdministradorAceptarController extends BaseController {
 	// Event Listener on Button[#btnArticulos].onAction
 	@FXML
 	public void datosArticulos(ActionEvent event) {
+		AdministradorArticulosController.estado=false;
 		this.nuevaVentana("AdministradorArticulos");
 	}
 

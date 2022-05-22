@@ -7,10 +7,7 @@ public class Articulo implements Serializable {
 	private String nombre;
 	private String descripcion;
 	private Double precio;
-	private String leche;
-	private Extra extra;
 	private Integer cantidad;
-	private boolean crema;
 
 	public Articulo() {
 		// TODO Auto-generated constructor stub
@@ -48,22 +45,6 @@ public class Articulo implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Extra getExtra() {
-		return extra;
-	}
-
-	public void setExtra(Extra extra) {
-		this.extra = extra;
-	}
-
-	public boolean isCrema() {
-		return crema;
-	}
-
-	public void setCrema(boolean crema) {
-		this.crema = crema;
-	}
-
 	public Double getPrecio() {
 		return precio;
 	}
@@ -72,18 +53,9 @@ public class Articulo implements Serializable {
 		this.precio = precio;
 	}
 
-	public String getLeche() {
-		return leche;
-	}
-
-	public void setLeche(String leche) {
-		this.leche = leche;
-	}
-
 	@Override
 	public String toString() {
-		return "Articulo [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", leche=" + leche
-				+ ", extra=" + extra + ", crema=" + crema + "]";
+		return nombre;
 	}
 
 }

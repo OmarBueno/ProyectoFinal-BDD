@@ -81,4 +81,12 @@ public class Pedido implements Serializable {
 				+ ", estado=" + estado + ", total=" + total + ", articulos=" + articulos + "]";
 	}
 
+	public static Pedido getInstancia() {
+		return instancia;
+	}
+
+	public static void setInstancia(Pedido instancia) {
+		Pedido.instancia = instancia;
+	}
+
 }

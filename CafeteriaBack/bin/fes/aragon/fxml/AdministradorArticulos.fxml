@@ -36,12 +36,9 @@
       </Label>
       <TableView fx:id="tablaArticulos" layoutX="9.0" layoutY="60.0" prefHeight="268.0" prefWidth="580.0">
         <columns>
-          <TableColumn fx:id="clmNombre" prefWidth="89.0" text="Nombre" />
-          <TableColumn fx:id="clmDescripcion" prefWidth="95.0" text="Descripcion" />
-            <TableColumn fx:id="clmPrecio" prefWidth="74.0" text="Precio" />
-            <TableColumn fx:id="clmLeche" prefWidth="112.0" text="Leche" />
-            <TableColumn fx:id="clmExtra" prefWidth="128.0" text="Extra" />
-            <TableColumn fx:id="clmCrema" prefWidth="81.0" text="Crema Batida" />
+          <TableColumn fx:id="clmNombre" prefWidth="196.0" text="Nombre" />
+          <TableColumn fx:id="clmDescripcion" prefWidth="289.0" text="Descripcion" />
+            <TableColumn fx:id="clmPrecio" prefWidth="94.0" text="Precio" />
         </columns>
       </TableView>
    </children>

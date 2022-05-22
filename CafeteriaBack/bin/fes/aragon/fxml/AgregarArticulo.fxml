@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.NuevoArticuloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AgregarArticuloController">
    <children>
       <Label layoutX="109.0" layoutY="104.0" prefHeight="16.0" prefWidth="109.0" text="Articulo">
          <font>
@@ -40,12 +40,12 @@
             <Font name="Georgia" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnAceptar" layoutX="222.0" layoutY="360.0" mnemonicParsing="false" onAction="#aceptarNuevo" text="Aceptar">
+      <Button fx:id="btnAceptar" layoutX="218.0" layoutY="396.0" mnemonicParsing="false" onAction="#aceptarNuevo" text="Aceptar">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnSalir" layoutX="325.0" layoutY="360.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="66.0" text="Salir">
+      <Button fx:id="btnSalir" layoutX="321.0" layoutY="396.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="66.0" text="Salir">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
@@ -58,8 +58,14 @@
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCantidad" layoutX="257.0" layoutY="183.0" prefHeight="25.0" prefWidth="235.0" />
-      <ComboBox fx:id="cmbArticulo" layoutX="259.0" layoutY="100.0" prefHeight="25.0" prefWidth="244.0" />
-      <Label fx:id="lblPrecio" layoutX="253.0" layoutY="138.0" prefHeight="26.0" prefWidth="120.0" text="Label" />
+      <TextField fx:id="txtCantidad" layoutX="257.0" layoutY="183.0" onAction="#setTotal" onKeyReleased="#setTotal" prefHeight="25.0" prefWidth="235.0" />
+      <ComboBox fx:id="cmbArticulo" layoutX="259.0" layoutY="100.0" onAction="#setPrecio" prefHeight="25.0" prefWidth="244.0" />
+      <Label fx:id="lblPrecio" layoutX="259.0" layoutY="134.0" prefHeight="26.0" prefWidth="120.0" />
+      <Label layoutX="106.0" layoutY="348.0" text="Total">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" layoutX="256.0" layoutY="335.0" prefHeight="26.0" prefWidth="120.0" />
    </children>
 </Pane>

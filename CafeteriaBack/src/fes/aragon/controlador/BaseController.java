@@ -49,6 +49,8 @@ public class BaseController {
 			Scene scene = new Scene(root);
 			Stage escenario = new Stage();
 			escenario.setScene(scene);
+			escenario.initStyle(StageStyle.UNDECORATED);
+			escenario.initModality(Modality.APPLICATION_MODAL);
 			escenario.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -133,12 +135,10 @@ public class BaseController {
 			objeto.setNombre(art.getNombre());
 			objeto.setDescripcion(art.getDescripcion());
 			objeto.setPrecio(art.getPrecio());
-			objeto.setLeche(art.getLeche());
-			objeto.setExtra(art.getExtra());
-			objeto.setCrema(art.isCrema());
 			Articulos.getInstancia().getGrupoArticulos().add(objeto);
 		}
 	}
+	
 	public void recogerDatosArticulosPedido() throws Exception {
 		ArticuloImp<Articulo> cn = new ArticuloImp<>();
 		ArrayList<Articulo> datos = cn.consulta();
@@ -148,9 +148,6 @@ public class BaseController {
 			objeto.setNombre(art.getNombre());
 			objeto.setDescripcion(art.getDescripcion());
 			objeto.setPrecio(art.getPrecio());
-			objeto.setLeche(art.getLeche());
-			objeto.setExtra(art.getExtra());
-			objeto.setCrema(art.isCrema());
 			Articulos.getInstancia().getGrupoArticulos().add(objeto);
 		}
 	}

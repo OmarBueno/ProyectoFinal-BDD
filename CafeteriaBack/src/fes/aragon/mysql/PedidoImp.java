@@ -81,6 +81,22 @@ public class PedidoImp<E> implements IBaseDatos<E> {
 
 	}
 
+	public void insertarArticulos(E obj) throws Exception {
+		Pedido pedido = (Pedido) obj;
+		for (Articulo ats : pedido.getArticulos()) {
+			String query = "insert into pedidos_articulos values(?,?,?,?,?)";
+			PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
+					Statement.RETURN_GENERATED_KEYS);
+			solicitud.setInt(1, pedido.getId());
+			solicitud.setInt(2, ats.getId());
+			solicitud.setInt(3, ats.getCantidad());
+			solicitud.setDouble(4, ats.getPrecio());
+			solicitud.setDouble(5, ats.getPrecio()*ats.getCantidad());
+			solicitud.executeUpdate();
+			solicitud.close();
+		}
+	}
+
 	@Override
 	public E consulta(Integer id) throws Exception {
 		// TODO Auto-generated method stub
