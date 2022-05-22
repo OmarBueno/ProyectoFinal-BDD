@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
 public class AdministradorArticulosController extends BaseController implements Initializable{
+	public static boolean estado=false;
 	@FXML
 	private Button btnNuevoArticulo;
 	@FXML
@@ -66,8 +67,8 @@ public class AdministradorArticulosController extends BaseController implements 
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-			
 		try {
+			System.out.println(estado);
 			this.recogerDatosArticulos();
 			ObservableList<Articulo> grupo=Articulos.getInstancia().getGrupoArticulos();
 			for (Articulo art : grupo) {

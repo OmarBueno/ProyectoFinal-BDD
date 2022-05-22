@@ -55,6 +55,20 @@ public class BaseController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void nuevaVentanaEstado(String archivo) {
+		try {
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/fes/aragon/fxml/" + archivo + ".fxml"));
+			AdministradorArticulosController.estado=true;
+			Scene scene = new Scene(root);
+			Stage escenario = new Stage();
+			escenario.setScene(scene);
+			escenario.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void ventanaEmergente(String titulo, String encabezado, String contenido) {
 		Alert alerta;
@@ -111,6 +125,21 @@ public class BaseController {
 	}
 	
 	public void recogerDatosArticulos() throws Exception {
+		ArticuloImp<Articulo> cn = new ArticuloImp<>();
+		ArrayList<Articulo> datos = cn.consulta();
+		for (Articulo art : datos) {
+			Articulo objeto = new Articulo();
+			objeto.setId(art.getId());
+			objeto.setNombre(art.getNombre());
+			objeto.setDescripcion(art.getDescripcion());
+			objeto.setPrecio(art.getPrecio());
+			objeto.setLeche(art.getLeche());
+			objeto.setExtra(art.getExtra());
+			objeto.setCrema(art.isCrema());
+			Articulos.getInstancia().getGrupoArticulos().add(objeto);
+		}
+	}
+	public void recogerDatosArticulosPedido() throws Exception {
 		ArticuloImp<Articulo> cn = new ArticuloImp<>();
 		ArrayList<Articulo> datos = cn.consulta();
 		for (Articulo art : datos) {
