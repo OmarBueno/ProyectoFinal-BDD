@@ -1,7 +1,9 @@
 package fes.aragon.controlador;
 
-import java.io.Serializable;
+import static javafx.scene.control.ButtonType.OK;
+
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import fes.aragon.modelo.Cliente;
@@ -10,12 +12,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class AdministradorClienteController extends BaseController implements Initializable{
+public class AdministradorClienteController extends BaseController implements Initializable {
 
 	@FXML
 	private Button btnEditar;
@@ -49,7 +54,22 @@ public class AdministradorClienteController extends BaseController implements In
 
 	@FXML
 	void editarCliente(ActionEvent event) {
+		int indice = this.tablaClientes.getSelectionModel().getSelectedIndex();
+		if (indice >= 0) {
+			ClientesPedidos.getInstancia().setModificarClientesPedido(true);
+			ClientesPedidos.getInstancia().setIndice(indice);
+			this.nuevaVentana("NuevoCliente");
+		} else {
+			Alert alerta;
+			alerta = new Alert(AlertType.INFORMATION);
+			alerta.setTitle("Dialogo de Aviso");
+			alerta.setHeaderText("Se necesita una fila");
+			alerta.setContentText("Por favor selecciona una fila, para la modificar");
+			Optional<ButtonType> resultado = alerta.showAndWait();
+			if (resultado.get().equals(OK)) {
 
+			}
+		}
 	}
 
 	@FXML
@@ -64,7 +84,7 @@ public class AdministradorClienteController extends BaseController implements In
 
 	@FXML
 	void salirCliente(ActionEvent event) {
-		ObservableList<Cliente> grupo=ClientesPedidos.getInstancia().getGrupoClientesPedidos();
+		ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
 		grupo.clear();
 		this.cerrarVentana(btnSalir);
 	}
@@ -73,7 +93,7 @@ public class AdministradorClienteController extends BaseController implements In
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
 			this.recogerDatos();
-			ObservableList<Cliente> grupo=ClientesPedidos.getInstancia().getGrupoClientesPedidos();
+			ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
 			for (Cliente cliente : grupo) {
 				System.out.println(cliente);
 			}
@@ -86,7 +106,7 @@ public class AdministradorClienteController extends BaseController implements In
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

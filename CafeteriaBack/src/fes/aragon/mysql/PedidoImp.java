@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import fes.aragon.interfaz.IBaseDatos;
 import fes.aragon.modelo.Articulo;
 import fes.aragon.modelo.Cliente;
-import fes.aragon.modelo.Extra;
 import fes.aragon.modelo.Pedido;
 
 public class PedidoImp<E> implements IBaseDatos<E> {
 
 	@Override
 	public ArrayList<E> consulta() throws Exception {
-		String query = "SELECT * FROM PEDIDOS a, clientes b WHERE a.id_cls=b.id_cls order by id_pds asc;";
+		String query = "SELECT * FROM PEDIDOS a, clientes b WHERE a.id_cls=b.id_cls order by id_pds asc";
 		ArrayList<E> datos = new ArrayList<>();
 		Statement solicitud = Conexion.getInstancia().getCnn().createStatement();
 		ResultSet resultado = solicitud.executeQuery(query);

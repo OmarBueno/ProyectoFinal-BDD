@@ -9,13 +9,11 @@ import fes.aragon.modelo.Articulo;
 import fes.aragon.modelo.Articulos;
 import fes.aragon.modelo.Cliente;
 import fes.aragon.modelo.ClientesPedidos;
-import fes.aragon.modelo.Extra;
 import fes.aragon.modelo.Pedido;
 import fes.aragon.modelo.Pedidos;
 import fes.aragon.modelo.TipoError;
 import fes.aragon.mysql.ArticuloImp;
 import fes.aragon.mysql.ClienteImp;
-import fes.aragon.mysql.ExtraImp;
 import fes.aragon.mysql.PedidoImp;
 import javafx.collections.FXCollections;
 import javafx.css.PseudoClass;
@@ -57,11 +55,11 @@ public class BaseController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void nuevaVentanaEstado(String archivo) {
 		try {
 			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/fes/aragon/fxml/" + archivo + ".fxml"));
-			AdministradorArticulosController.estado=true;
+			AdministradorArticulosController.estado = true;
 			Scene scene = new Scene(root);
 			Stage escenario = new Stage();
 			escenario.setScene(scene);
@@ -118,6 +116,7 @@ public class BaseController {
 			objeto.setId(cliente.getId());
 			objeto.setNombre(cliente.getNombre());
 			objeto.setApPaterno(cliente.getApPaterno());
+			objeto.setContrasena(cliente.getContrasena());
 			objeto.setApMaterno(cliente.getApMaterno());
 			objeto.setCorreo(cliente.getCorreo());
 			objeto.setTelefono(cliente.getTelefono());
@@ -125,7 +124,7 @@ public class BaseController {
 			ClientesPedidos.getInstancia().getGrupoClientesPedidos().add(objeto);
 		}
 	}
-	
+
 	public void recogerDatosArticulos() throws Exception {
 		ArticuloImp<Articulo> cn = new ArticuloImp<>();
 		ArrayList<Articulo> datos = cn.consulta();
@@ -138,7 +137,20 @@ public class BaseController {
 			Articulos.getInstancia().getGrupoArticulos().add(objeto);
 		}
 	}
-	
+
+	public void recogerDatosArticulosValor(Integer valor) throws Exception {
+		ArticuloImp<Articulo> cn = new ArticuloImp<>();
+		ArrayList<Articulo> datos = cn.consultaValor(valor);
+		for (Articulo art : datos) {
+			Articulo objeto = new Articulo();
+			objeto.setId(art.getId());
+			objeto.setNombre(art.getNombre());
+			objeto.setDescripcion(art.getDescripcion());
+			objeto.setPrecio(art.getPrecio());
+			Articulos.getInstancia().getGrupoArticulos().add(objeto);
+		}
+	}
+
 	public void recogerDatosArticulosPedido() throws Exception {
 		ArticuloImp<Articulo> cn = new ArticuloImp<>();
 		ArrayList<Articulo> datos = cn.consulta();
@@ -168,6 +180,5 @@ public class BaseController {
 		}
 
 	}
-	
 
 }

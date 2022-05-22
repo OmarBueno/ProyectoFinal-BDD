@@ -15,18 +15,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
-
-import fes.aragon.modelo.Articulo;
-import fes.aragon.modelo.Articulos;
 import fes.aragon.modelo.Cliente;
-import fes.aragon.modelo.Extra;
+import fes.aragon.modelo.ClientesPedidos;
 import fes.aragon.modelo.Pedido;
 import fes.aragon.modelo.Pedidos;
-import fes.aragon.mysql.ArticuloImp;
 import fes.aragon.mysql.ClienteImp;
-import fes.aragon.mysql.ExtraImp;
 import fes.aragon.mysql.PedidoImp;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -71,13 +65,14 @@ public class NuevoPedidoController extends BaseController implements Initializab
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Pedidos.getInstancia().setModificarPedido(false);
 		this.cerrarVentana(btnCerrar);
 	}
-
 
 	// Event Listener on Button[#btnCerrar].onAction
 	@FXML
 	public void cerrar(ActionEvent event) {
+		Pedidos.getInstancia().setModificarPedido(false);
 		this.cerrarVentana(btnCerrar);
 	}
 
@@ -86,14 +81,17 @@ public class NuevoPedidoController extends BaseController implements Initializab
 	public void abrirArticulos(ActionEvent event) {
 		AdministradorArticulosController.estado = true;
 		this.nuevaVentana("AdministradorArticulos");
+		if (Pedidos.getInstancia().isModificarPedido()) {
+
+		}
 	}
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		pedido.setTotal(null);
-		String estados = "NUEVO";
-		this.cmbEstado.getItems().add(estados);
-		this.cmbEstado.getSelectionModel().select(0);
+		String estados[] = { "CANCELADO", "EN PREPARACION", "FINALIZADO", "NUEVO" };
+		this.cmbEstado.getItems().addAll(estados);
+		this.cmbEstado.getSelectionModel().select(3);
 		this.cmbEstado.setDisable(true);
 		SimpleDateFormat standar;
 		String standarFormat;
@@ -103,13 +101,12 @@ public class NuevoPedidoController extends BaseController implements Initializab
 		standarFormat = standar.format(nowDate);
 		System.out.println(standarFormat);
 		this.lblFecha.setText(standarFormat);
-
 		ClienteImp<Cliente> cnn = new ClienteImp<>();
 		try {
 			ArrayList<Cliente> clientes = cnn.consulta();
 			Cliente tmpCliente = new Cliente();
 			tmpCliente.setId(0);
-			tmpCliente.setCorreo("Selecciona un tipo");
+			tmpCliente.setCorreo("Selecciona un cliente");
 			this.cmbCliente.getItems().add(tmpCliente);
 			for (Cliente cliente : clientes) {
 				this.cmbCliente.getItems().add(cliente);
@@ -117,6 +114,18 @@ public class NuevoPedidoController extends BaseController implements Initializab
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.ventanaEmergente("Mensaje", "Error en la aplicación", "Consultar al administrador");
+		}
+		if (Pedidos.getInstancia().isModificarPedido()) {
+			this.pedido = Pedidos.getInstancia().getGrupoPedidos().get(Pedidos.getInstancia().getIndice());
+			this.txtDireccion.setText(pedido.getDireccion());
+			this.lblFecha.setText(pedido.getFecha());
+			this.lblTotal.setText(String.valueOf(pedido.getTotal()));
+			this.cmbEstado.getSelectionModel().select(pedido.getEstado());
+			this.cmbEstado.setDisable(false);
+			this.cmbCliente.getSelectionModel().select(pedido.getCliente());
+		} else {
+			pedido = Pedidos.getInstancia().getGrupoPedidos().get(Pedidos.getInstancia().getGrupoPedidos().size() - 1);
+
 		}
 	}
 }

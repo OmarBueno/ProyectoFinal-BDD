@@ -13,10 +13,8 @@ import java.util.ResourceBundle;
 
 import fes.aragon.modelo.Articulo;
 import fes.aragon.modelo.Articulos;
-import fes.aragon.modelo.Extra;
 import fes.aragon.modelo.Pedido;
 import fes.aragon.mysql.ArticuloImp;
-import fes.aragon.mysql.ExtraImp;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -35,8 +33,6 @@ public class AgregarArticuloController extends BaseController implements Initial
 	private ComboBox<String> cmbTipoLeche;
 	@FXML
 	private CheckBox chkCremaBatida;
-	@FXML
-	private ComboBox<Extra> cmbExtra;
 	@FXML
 	private TextField txtCantidad;
 	@FXML
@@ -92,17 +88,7 @@ public class AgregarArticuloController extends BaseController implements Initial
 			for (Articulo ats : articulos) {
 				this.cmbArticulo.getItems().add(ats);
 			}
-			ExtraImp<Extra> cnn2 = new ExtraImp<>();
-			ArrayList<Extra> extras = cnn2.consulta();
-			Extra tmpExtra = new Extra();
-			tmpExtra.setId(0);
-			tmpExtra.setExtra("Selecciona un tipo");
-			this.cmbExtra.getItems().add(tmpExtra);
-			for (Extra extra : extras) {
-				this.cmbExtra.getItems().add(extra);
-			}
-			String[] leches = { "Selecciona un tipo", "ENTERA", "LIGHT", "DESLACTOSADA", "ALMENDRA", "SOYA", "COCO" };
-			cmbTipoLeche.getItems().addAll(leches);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.ventanaEmergente("Mensaje", "Error en la aplicación", "Consultar al administrador");
