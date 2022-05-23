@@ -43,20 +43,27 @@ public class NuevoArticuloController extends BaseController implements Initializ
 	@FXML
 	private TextField txtCantidad;
 
-	Articulo art;
+	private Articulo art;
 
 	// Event Listener on Button[#btnAceptar].onAction
 	@FXML
 	public void aceptarNuevo(ActionEvent event) {
 		try {
-			art = new Articulo();
 			art.setNombre(this.txtNombre.getText());
 			art.setDescripcion(this.txtDescripcion.getText());
 			art.setPrecio(Double.valueOf(txtPrecio.getText()));
 			ObservableList<Articulo> grupo = Articulos.getInstancia().getGrupoArticulos();
-			grupo.add(art);
-			ArticuloImp<Articulo> cn = new ArticuloImp<>();
-			cn.insertar(art);
+			if (Articulos.getInstancia().isGrupoArticulo()) {
+				Articulos.getInstancia().getGrupoArticulos().set
+				(Articulos.getInstancia().getIndice(), art);
+				ArticuloImp<Articulo> cn = new ArticuloImp<>();
+				cn.modificar(art);
+			}
+			else {
+				grupo.add(art);
+				ArticuloImp<Articulo> cn = new ArticuloImp<>();
+				cn.insertar(art);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,14 +81,11 @@ public class NuevoArticuloController extends BaseController implements Initializ
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		if (Articulos.getInstancia().isGrupoArticulo()) {
-			this.art = Articulos.getInstancia().getGrupoArticulos().get(Articulos.getInstancia().getIndice());
+			this.art = Articulos.getInstancia().getGrupoArticulos()
+					.get(Articulos.getInstancia().getIndice());
 			this.txtNombre.setText(art.getNombre());
 			this.txtDescripcion.setText(art.getDescripcion());
 			this.txtPrecio.setText(String.valueOf(art.getPrecio()));
-		} else {
-			art = Articulos.getInstancia().getGrupoArticulos()
-					.get(Articulos.getInstancia().getGrupoArticulos().size() - 1);
-
 		}
 	}
 }

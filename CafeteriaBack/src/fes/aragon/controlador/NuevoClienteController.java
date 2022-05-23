@@ -39,22 +39,35 @@ public class NuevoClienteController extends BaseController implements Initializa
 	@FXML
 	public void aceptarNuevoUsuario(ActionEvent event) {
 		try {
-			cl = new Cliente();
-			cl.setNombre(this.txtNombre.getText());
-			cl.setApPaterno(this.txtApPaterno.getText());
-			cl.setApMaterno(this.txtApMaterno.getText());
-			cl.setContrasena(this.txtContraseña.getText());
-			cl.setTelefono(this.txtTelefono.getText());
-			cl.setCorreo(this.txtCorreo.getText());
-			cl.setPedidos(null);
-			ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
-			grupo.add(cl);
-			ClienteImp<Cliente> cn = new ClienteImp<>();
-			cn.insertar(cl);
-			ClientesPedidos.getInstancia().setModificarClientesPedido(false);
+			if (ClientesPedidos.getInstancia().isModificarClientesPedido()) {
+				cl.setNombre(this.txtNombre.getText());
+				cl.setApPaterno(this.txtApPaterno.getText());
+				cl.setApMaterno(this.txtApMaterno.getText());
+				cl.setContrasena(this.txtContraseña.getText());
+				cl.setTelefono(this.txtTelefono.getText());
+				cl.setCorreo(this.txtCorreo.getText());
+				ClientesPedidos.getInstancia().getGrupoClientesPedidos().set
+				(ClientesPedidos.getInstancia().getIndice(), cl);
+				ClienteImp<Cliente> cn = new ClienteImp<>();
+				cn.modificar(cl);
+			} else {
+				cl = new Cliente();
+				cl.setNombre(this.txtNombre.getText());
+				cl.setApPaterno(this.txtApPaterno.getText());
+				cl.setApMaterno(this.txtApMaterno.getText());
+				cl.setContrasena(this.txtContraseña.getText());
+				cl.setTelefono(this.txtTelefono.getText());
+				cl.setCorreo(this.txtCorreo.getText());
+				cl.setPedidos(null);
+				ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
+				grupo.add(cl);
+				ClienteImp<Cliente> cn = new ClienteImp<>();
+				cn.insertar(cl);		
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		ClientesPedidos.getInstancia().setModificarClientesPedido(false);
 		this.cerrarVentana(btnAceptar);
 
 	}
@@ -68,20 +81,15 @@ public class NuevoClienteController extends BaseController implements Initializa
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if (ClientesPedidos.getInstancia().isModificarClientesPedido()) {	
-			this.cl = ClientesPedidos.getInstancia().getGrupoClientesPedidos().get
-					(ClientesPedidos.getInstancia().getIndice());
+		if (ClientesPedidos.getInstancia().isModificarClientesPedido()) {
+			this.cl = ClientesPedidos.getInstancia().getGrupoClientesPedidos()
+					.get(ClientesPedidos.getInstancia().getIndice());
 			this.txtNombre.setText(cl.getNombre());
 			this.txtApPaterno.setText(cl.getApPaterno());
 			this.txtApMaterno.setText(cl.getApMaterno());
 			this.txtCorreo.setText(cl.getCorreo());
 			this.txtContraseña.setText(cl.getContrasena());
 			this.txtTelefono.setText(cl.getTelefono());
-		}
-		else {
-			cl = ClientesPedidos.getInstancia().getGrupoClientesPedidos().get
-					(ClientesPedidos.getInstancia().getGrupoClientesPedidos().size() - 1);
-
 		}
 	}
 }

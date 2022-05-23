@@ -45,6 +45,7 @@ public class NuevoPedidoController extends BaseController implements Initializab
 	private Label lblTotal;
 	@FXML
 	private Button btnArticulos;
+
 	Pedido pedido = Pedido.getInstancia();
 
 	// Event Listener on Button[#btnAceptarPedido].onAction
@@ -57,11 +58,18 @@ public class NuevoPedidoController extends BaseController implements Initializab
 			pedido.setEstado(this.cmbEstado.getValue());
 			pedido.setArticulos(Pedido.getInstancia().getArticulos());
 			ObservableList<Pedido> grupo = Pedidos.getInstancia().getGrupoPedidos();
-			grupo.add(pedido);
-			PedidoImp<Pedido> cn = new PedidoImp<>();
-			cn.insertar(pedido);
-			System.out.println(pedido.getArticulos());
-			cn.insertarArticulos(pedido);
+			if (Pedidos.getInstancia().isModificarPedido()) {
+				Pedidos.getInstancia().getGrupoPedidos().set
+				(Pedidos.getInstancia().getIndice(), pedido);
+				PedidoImp<Pedido> cn = new PedidoImp<>();
+				cn.modificar(pedido);
+			} else {
+				grupo.add(pedido);
+				PedidoImp<Pedido> cn = new PedidoImp<>();
+				cn.insertar(pedido);
+				System.out.println(pedido.getArticulos());
+				cn.insertarArticulos(pedido);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,9 +131,8 @@ public class NuevoPedidoController extends BaseController implements Initializab
 			this.cmbEstado.getSelectionModel().select(pedido.getEstado());
 			this.cmbEstado.setDisable(false);
 			this.cmbCliente.getSelectionModel().select(pedido.getCliente());
-		} else {
-			pedido = Pedidos.getInstancia().getGrupoPedidos().get(Pedidos.getInstancia().getGrupoPedidos().size() - 1);
-
+			this.cmbCliente.setDisable(true);
+			this.txtDireccion.setDisable(true);
 		}
 	}
 }

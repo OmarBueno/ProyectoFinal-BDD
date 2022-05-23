@@ -38,12 +38,15 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 	}
 
 	public ArrayList<E> consultaValor(Integer id) throws Exception {
+		/*String query = "select b.id_ats,b.nombre_ats,b.descripcion_ats,b.precio_ats from pedidos_articulos a, articulos b "
+				+ "where"
+				+ " a.id_ats=b.id_ats and id_pds=?";*/
+		
 		String query = "select b.id_ats,b.nombre_ats,b.descripcion_ats,b.precio_ats from pedidos_articulos a, articulos b "
-				+ "where a.id_ats=b.id_ats and id_pds=?";
+				+ "where a.id_ats=b.id_ats and id_pds="+id;
 		ArrayList<E> datos = new ArrayList<>();
-		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
-				Statement.RETURN_GENERATED_KEYS);
-		solicitud.setInt(1, id);
+		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query);
+		System.out.println(id);
 		ResultSet resultado = solicitud.executeQuery(query);
 		if (!resultado.next()) {
 			System.out.println("Sin datos");
@@ -76,6 +79,7 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 		String query = "insert into articulos(nombre_ats,descripcion_ats,precio_ats) " + "values(?,?,?)";
 		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
 				Statement.RETURN_GENERATED_KEYS);
+
 		solicitud.setString(1, ats.getNombre());
 		solicitud.setString(2, ats.getDescripcion());
 		solicitud.setDouble(3, ats.getPrecio());
@@ -87,8 +91,19 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 
 	@Override
 	public void modificar(E obj) throws Exception {
-		// TODO Auto-generated method stub
-
+		Articulo ats = (Articulo) obj;
+		String query = "update articulos set nombre_ats=?,descripcion_ats=?,precio_ats=? where id_ats=?";
+		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
+				Statement.RETURN_GENERATED_KEYS);
+		System.out.println(ats.getId());
+		solicitud.setString(1, ats.getNombre());
+		solicitud.setString(2, ats.getDescripcion());
+		solicitud.setDouble(3, ats.getPrecio());
+		solicitud.setInt(4, ats.getId());
+		solicitud.executeUpdate();
+		ResultSet resultado = solicitud.getGeneratedKeys();
+		solicitud.close();
+		resultado.close();
 	}
 
 	@Override
@@ -99,8 +114,14 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 
 	@Override
 	public void eliminar(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-
+		System.out.println("Entre borrar");
+		String query = "{call borrar_articulos(?)}";
+		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		solicitud.setInt(1, id);
+		solicitud.executeUpdate();
+		ResultSet resultado = solicitud.getGeneratedKeys();
+		solicitud.close();
+		resultado.close();
 	}
 
 	@Override

@@ -13,22 +13,17 @@
             <Image url="@../recursos/fondoCafeteria.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnClientes" layoutX="220.0" layoutY="20.0" mnemonicParsing="false" onAction="#datosClientes" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: ddb893;" text="Clientes" textFill="#724a11">
+      <Button fx:id="btnClientes" layoutX="221.0" layoutY="65.0" mnemonicParsing="false" onAction="#datosClientes" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: ddb893;" text="Clientes" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnPedidos" layoutX="220.0" layoutY="92.0" mnemonicParsing="false" onAction="#datosPedidos" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: ddb893;" text="Pedidos" textFill="#724a11">
+      <Button fx:id="btnPedidos" layoutX="221.0" layoutY="137.0" mnemonicParsing="false" onAction="#datosPedidos" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: ddb893;" text="Pedidos" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnArticulos" layoutX="220.0" layoutY="164.0" mnemonicParsing="false" onAction="#datosArticulos" style="-fx-background-color: ddb893;" text="Articulos" textFill="#724a11">
-         <font>
-            <Font name="Georgia" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnExtras" layoutX="220.0" layoutY="236.0" mnemonicParsing="false" onAction="#datosExtras" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: ddb893;" text="Extras" textFill="#724a11">
+      <Button fx:id="btnArticulos" layoutX="221.0" layoutY="209.0" mnemonicParsing="false" onAction="#datosArticulos" style="-fx-background-color: ddb893;" text="Articulos" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>

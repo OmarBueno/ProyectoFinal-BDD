@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import fes.aragon.modelo.Cliente;
 import fes.aragon.modelo.ClientesPedidos;
+import fes.aragon.mysql.ClienteImp;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,7 +75,29 @@ public class AdministradorClienteController extends BaseController implements In
 
 	@FXML
 	void eliminarCliente(ActionEvent event) {
+		int indice = this.tablaClientes.getSelectionModel().getSelectedIndex();
+		if (indice >= 0) {
+			ClientesPedidos.getInstancia().setIndice(indice);
+			Cliente cl = ClientesPedidos.getInstancia().getGrupoClientesPedidos()
+					.get(ClientesPedidos.getInstancia().getIndice());
+			ClientesPedidos.getInstancia().getGrupoClientesPedidos().remove(cl);
+			ClienteImp<Cliente> cn = new ClienteImp<>();
+			try {
+				cn.eliminar(cl.getId());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			Alert alerta;
+			alerta = new Alert(AlertType.INFORMATION);
+			alerta.setTitle("Dialogo de Aviso");
+			alerta.setHeaderText("Se necesita una fila");
+			alerta.setContentText("Por favor selecciona una fila, para eliminar");
+			Optional<ButtonType> resultado = alerta.showAndWait();
+			if (resultado.get().equals(OK)) {
 
+			}
+		}
 	}
 
 	@FXML

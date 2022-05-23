@@ -19,11 +19,11 @@ CONSTRAINT apellido_materno CHECK (REGEXP_LIKE(ap_materno_cls,'[A-Z]'))
 
 CREATE TABLE pedidos(
 id_pds				INTEGER NOT NULL AUTO_INCREMENT,
-id_cls				INTEGER NOT NULL,
 direccion_pds		VARCHAR(150) NOT NULL,
 fecha_hora_pds		DATETIME NOT NULL,
 estado_pds			VARCHAR(15) BINARY NOT NULL,
 total_pds			DECIMAL(6,2),
+id_cls				INTEGER NOT NULL,
 PRIMARY KEY(id_pds),
 FOREIGN KEY(id_cls) REFERENCES clientes(id_cls),
 CONSTRAINT verificar_estado CHECK(estado_pds IN ('CANCELADO','EN PREPARACION','FINALIZADO','NUEVO'))
@@ -110,9 +110,7 @@ END
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `borrar_articulos`(in id int)
 BEGIN
-	CREATE TEMPORARY TABLE IF NOT EXISTS pedidos_temporal AS (select id_pds from pedidos_articulos where id_ats=id);
     delete from pedidos_articulos where id_ats=id;
-    delete from pedidos where id_pds in (select * from pedidos_temporal);
 	delete from articulos where id_ats=id;
 END
 

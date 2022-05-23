@@ -76,8 +76,24 @@ public class PedidoImp<E> implements IBaseDatos<E> {
 
 	@Override
 	public void modificar(E obj) throws Exception {
-		// TODO Auto-generated method stub
-
+		Pedido pedido = (Pedido) obj;
+		String query = "update pedidos set direccion_pds=?,fecha_hora_pds=?,estado_pds=?,total_pds=?,"
+				+ "id_cls=? where id_pds=?";
+		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
+				Statement.RETURN_GENERATED_KEYS);
+		solicitud.setString(1, pedido.getDireccion());
+		solicitud.setString(2, pedido.getFecha());
+		solicitud.setString(3, pedido.getEstado());
+		solicitud.setDouble(4, pedido.getTotal());
+		solicitud.setInt(5, pedido.getCliente().getId());
+		solicitud.setInt(6, pedido.getId());
+		solicitud.executeUpdate();
+		ResultSet resultado = solicitud.getGeneratedKeys();
+		if (resultado.next()) {
+			pedido.setId(resultado.getInt(1));
+		}
+		solicitud.close();
+		resultado.close();
 	}
 
 	public void insertarArticulos(E obj) throws Exception {
@@ -104,7 +120,14 @@ public class PedidoImp<E> implements IBaseDatos<E> {
 
 	@Override
 	public void eliminar(Integer id) throws Exception {
-		// TODO Auto-generated method stub
+		System.out.println("Entre borrar");
+		String query = "{call borrar_pedidos(?)}";
+		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		solicitud.setInt(1, id);
+		solicitud.executeUpdate();
+		ResultSet resultado = solicitud.getGeneratedKeys();
+		solicitud.close();
+		resultado.close();
 
 	}
 
