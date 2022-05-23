@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 
 public class Conexion {
-	private String url = "jdbc:mysql://localhost:3306/cafeteria?serverTimezone=UTC";
+	private String url = "jdbc:mysql://localhost:3306/cafeteria1?serverTimezone=UTC";
 	private String usuario = "root";
 	private String clave = "admin";
 	private Connection cnn = null;

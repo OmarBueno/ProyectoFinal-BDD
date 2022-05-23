@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 public class NuevoClienteController extends BaseController implements Initializable {
-	private Cliente cliente;
 	@FXML
 	private TextField txtNombre;
 	@FXML
@@ -34,41 +33,47 @@ public class NuevoClienteController extends BaseController implements Initializa
 	@FXML
 	private Button btnSalir;
 	private Cliente cl;
+	private String mensajes = "";
 
 	// Event Listener on Button[#btnAceptar].onAction
 	@FXML
 	public void aceptarNuevoUsuario(ActionEvent event) {
-		try {
-			if (ClientesPedidos.getInstancia().isModificarClientesPedido()) {
-				cl.setNombre(this.txtNombre.getText());
-				cl.setApPaterno(this.txtApPaterno.getText());
-				cl.setApMaterno(this.txtApMaterno.getText());
-				cl.setContrasena(this.txtContraseña.getText());
-				cl.setTelefono(this.txtTelefono.getText());
-				cl.setCorreo(this.txtCorreo.getText());
-				ClientesPedidos.getInstancia().getGrupoClientesPedidos().set
-				(ClientesPedidos.getInstancia().getIndice(), cl);
-				ClienteImp<Cliente> cn = new ClienteImp<>();
-				cn.modificar(cl);
-			} else {
-				cl = new Cliente();
-				cl.setNombre(this.txtNombre.getText());
-				cl.setApPaterno(this.txtApPaterno.getText());
-				cl.setApMaterno(this.txtApMaterno.getText());
-				cl.setContrasena(this.txtContraseña.getText());
-				cl.setTelefono(this.txtTelefono.getText());
-				cl.setCorreo(this.txtCorreo.getText());
-				cl.setPedidos(null);
-				ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
-				grupo.add(cl);
-				ClienteImp<Cliente> cn = new ClienteImp<>();
-				cn.insertar(cl);		
+		if (this.verificar()) {
+			try {
+				if (ClientesPedidos.getInstancia().isModificarClientesPedido()) {
+					cl.setNombre(this.txtNombre.getText());
+					cl.setApPaterno(this.txtApPaterno.getText());
+					cl.setApMaterno(this.txtApMaterno.getText());
+					cl.setContrasena(this.txtContraseña.getText());
+					cl.setTelefono(this.txtTelefono.getText());
+					cl.setCorreo(this.txtCorreo.getText());
+					ClientesPedidos.getInstancia().getGrupoClientesPedidos()
+							.set(ClientesPedidos.getInstancia().getIndice(), cl);
+					ClienteImp<Cliente> cn = new ClienteImp<>();
+					cn.modificar(cl);
+				} else {
+					cl = new Cliente();
+					cl.setNombre(this.txtNombre.getText());
+					cl.setApPaterno(this.txtApPaterno.getText());
+					cl.setApMaterno(this.txtApMaterno.getText());
+					cl.setContrasena(this.txtContraseña.getText());
+					cl.setTelefono(this.txtTelefono.getText());
+					cl.setCorreo(this.txtCorreo.getText());
+					cl.setPedidos(null);
+					ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
+					grupo.add(cl);
+					ClienteImp<Cliente> cn = new ClienteImp<>();
+					cn.insertar(cl);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			ClientesPedidos.getInstancia().setModificarClientesPedido(false);
+			this.cerrarVentana(btnAceptar);
+		} else {
+			this.ventanaEmergente("Mensaje", "Datos no Correctos", this.mensajes);
+			this.mensajes = "";
 		}
-		ClientesPedidos.getInstancia().setModificarClientesPedido(false);
-		this.cerrarVentana(btnAceptar);
 
 	}
 
@@ -91,5 +96,53 @@ public class NuevoClienteController extends BaseController implements Initializa
 			this.txtContraseña.setText(cl.getContrasena());
 			this.txtTelefono.setText(cl.getTelefono());
 		}
+	}
+	
+	private boolean verificar() {
+		boolean valido = true;
+		if ((this.txtNombre.getText() == null)
+				|| (this.txtNombre.getText() != null && this.txtNombre.getText().isEmpty())) {
+			this.mensajes += "El nombre del cliente no es valido, es vacio\n";
+			valido = false;
+		}
+		if ((this.txtApPaterno.getText() == null)
+				|| (this.txtApPaterno.getText() != null && this.txtApPaterno.getText().isEmpty())) {
+			this.mensajes += "El apellido paterno del cliente no es valido, es vacio\n";
+			valido = false;
+		}
+		if ((this.txtApMaterno.getText() == null)
+				|| (this.txtApMaterno.getText() != null && this.txtApMaterno.getText().isEmpty())) {
+			this.mensajes += "El apellido materno del cliente no es valido, es vacio\n";
+			valido = false;
+		}
+		if ((this.txtContraseña.getText() == null)
+				|| (this.txtContraseña.getText() != null && this.txtContraseña.getText().isEmpty())) {
+			this.mensajes += "El apellido materno del cliente no es valido, es vacio\n";
+			valido = false;
+		}
+		if ((this.txtCorreo.getText() == null) || (this.txtCorreo != null && this.txtCorreo.getText().isEmpty())) {
+			this.mensajes += "El correo del cliente no es valido,  vacio\n";
+			valido = false;
+		}
+		if ((this.txtCorreo.getText() == null) || (this.txtCorreo != null && !this.txtCorreo.getText().isEmpty())) {
+			if (!this.correoValido) {
+				this.mensajes += "El correo del cliente no es valido, esta mal estructurado\n";
+				valido = false;
+			}
+		}
+		if ((this.txtTelefono.getText() == null)
+				|| (this.txtTelefono != null && this.txtTelefono.getText().isEmpty())) {
+			this.mensajes += "El telefono del cliente no es valido, es vacio\n";
+			valido = false;
+		}
+		if ((this.txtTelefono.getText() == null)
+				|| (this.txtTelefono != null && !this.txtTelefono.getText().isEmpty())) {
+			if (!this.telefonoValido) {
+				this.mensajes += "El telefono del cliente no es valido, minimo=10,maximo=10 numeros\n";
+				valido = false;
+			}
+
+		}
+		return valido;
 	}
 }
