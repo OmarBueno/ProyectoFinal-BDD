@@ -5,67 +5,86 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AgregarArticuloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AgregarArticuloController">
    <children>
-      <Label layoutX="109.0" layoutY="104.0" prefHeight="16.0" prefWidth="109.0" text="Articulo">
+      <ImageView fitHeight="666.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/fondoCafeteria.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="125.0" layoutY="93.0" prefHeight="16.0" prefWidth="109.0" text="Articulo" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="110.0" layoutY="147.0" text="Precio:">
+      <Label layoutX="126.0" layoutY="136.0" text="Precio:" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="109.0" layoutY="231.0" prefHeight="16.0" prefWidth="109.0" text="Tipo de Leche">
+      <Label layoutX="125.0" layoutY="220.0" prefHeight="16.0" prefWidth="109.0" text="Tipo de Leche" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="109.0" layoutY="272.0" prefHeight="16.0" prefWidth="109.0" text="Extra:">
+      <Label layoutX="125.0" layoutY="261.0" prefHeight="16.0" prefWidth="109.0" text="Extra:" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="109.0" layoutY="306.0" prefHeight="16.0" prefWidth="109.0" text="Crema Batida">
+      <Label layoutX="125.0" layoutY="295.0" prefHeight="16.0" prefWidth="109.0" text="Crema Batida" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="240.0" layoutY="45.0" text="Nuevo Articulo">
+      <Label layoutX="234.0" layoutY="32.0" text="Nuevo Articulo" textFill="#724a11">
          <font>
-            <Font name="Georgia" size="18.0" />
+            <Font name="Georgia Bold Italic" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnAceptar" layoutX="218.0" layoutY="396.0" mnemonicParsing="false" onAction="#aceptarNuevo" text="Aceptar">
+      <Button fx:id="btnAceptar" layoutX="234.0" layoutY="385.0" mnemonicParsing="false" onAction="#aceptarNuevo" style="-fx-background-color: ddb893;" text="Aceptar" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnSalir" layoutX="321.0" layoutY="396.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="66.0" text="Salir">
+      <Button fx:id="btnSalir" layoutX="337.0" layoutY="385.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: ddb893;" text="Salir" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cmbTipoLeche" layoutX="259.0" layoutY="227.0" prefHeight="25.0" prefWidth="235.0" promptText=" - - ------ - - " />
-      <CheckBox fx:id="chkCremaBatida" layoutX="259.0" layoutY="306.0" mnemonicParsing="false" />
-      <ComboBox fx:id="cmbExtra" layoutX="259.0" layoutY="268.0" prefHeight="25.0" prefWidth="235.0" promptText=" - - ------ - - " />
-      <Label layoutX="109.0" layoutY="187.0" text="Cantidad:">
+      <ComboBox fx:id="cmbTipoLeche" layoutX="275.0" layoutY="216.0" prefHeight="25.0" prefWidth="235.0" promptText="- --- Leche --- -" style="-fx-background-color: ddb893;" />
+      <CheckBox fx:id="chkCremaBatida" layoutX="275.0" layoutY="295.0" mnemonicParsing="false" style="-fx-background-color: ddb893;" textFill="#724a11">
+         <font>
+            <Font name="Georgia" size="12.0" />
+         </font></CheckBox>
+      <ComboBox fx:id="cmbExtra" layoutX="275.0" layoutY="257.0" prefHeight="25.0" prefWidth="235.0" promptText="- --- Extra --- -" style="-fx-background-color: ddb893;" />
+      <Label layoutX="125.0" layoutY="176.0" text="Cantidad:" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCantidad" layoutX="257.0" layoutY="183.0" onAction="#setTotal" onKeyReleased="#setTotal" prefHeight="25.0" prefWidth="235.0" />
-      <ComboBox fx:id="cmbArticulo" layoutX="259.0" layoutY="100.0" onAction="#setPrecio" prefHeight="25.0" prefWidth="244.0" />
-      <Label fx:id="lblPrecio" layoutX="259.0" layoutY="134.0" prefHeight="26.0" prefWidth="120.0" />
-      <Label layoutX="106.0" layoutY="348.0" text="Total">
+      <TextField fx:id="txtCantidad" layoutX="273.0" layoutY="172.0" onAction="#setTotal" onKeyReleased="#setTotal" prefHeight="25.0" prefWidth="235.0" style="-fx-background-color: ddb893;">
+         <font>
+            <Font name="Georgia" size="12.0" />
+         </font></TextField>
+      <ComboBox fx:id="cmbArticulo" layoutX="271.0" layoutY="89.0" onAction="#setPrecio" prefHeight="25.0" prefWidth="244.0" promptText="- --- Articulo --- -" style="-fx-background-color: ddb893;" />
+      <Label fx:id="lblPrecio" layoutX="272.0" layoutY="131.0" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: ddb893;" textFill="#724a11">
+         <font>
+            <Font name="Georgia" size="12.0" />
+         </font></Label>
+      <Label layoutX="122.0" layoutY="337.0" text="Total" textFill="#815220">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotal" layoutX="256.0" layoutY="335.0" prefHeight="26.0" prefWidth="120.0" />
+      <Label fx:id="lblTotal" layoutX="272.0" layoutY="324.0" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: ddb893;" textFill="#724a11">
+         <font>
+            <Font name="Georgia" size="12.0" />
+         </font></Label>
    </children>
 </Pane>

@@ -4,43 +4,50 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AdministradorClienteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.AdministradorClienteController">
    <children>
-      <Button fx:id="btnNuevoCliente" layoutX="53.0" layoutY="353.0" mnemonicParsing="false" onAction="#nuevoCliente" prefHeight="26.0" prefWidth="112.0" text="Nuevo Cliente">
+      <ImageView fitHeight="479.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/fondoCafeteria.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnNuevoCliente" layoutX="53.0" layoutY="353.0" mnemonicParsing="false" onAction="#nuevoCliente" prefHeight="26.0" prefWidth="112.0" style="-fx-background-color: ddb893;" text="Nuevo Cliente" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnEditar" layoutX="181.0" layoutY="353.0" mnemonicParsing="false" onAction="#editarCliente" prefHeight="26.0" prefWidth="112.0" text="Editar">
+      <Button fx:id="btnEditar" layoutX="181.0" layoutY="353.0" mnemonicParsing="false" onAction="#editarCliente" prefHeight="26.0" prefWidth="112.0" style="-fx-background-color: ddb893;" text="Editar" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnEliminar" layoutX="307.0" layoutY="353.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="26.0" prefWidth="112.0" text="Eliminar">
+      <Button fx:id="btnEliminar" layoutX="307.0" layoutY="353.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="26.0" prefWidth="112.0" style="-fx-background-color: ddb893;" text="Eliminar" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnSalir" layoutX="436.0" layoutY="353.0" mnemonicParsing="false" onAction="#salirCliente" prefHeight="26.0" prefWidth="112.0" text="Salir">
+      <Button fx:id="btnSalir" layoutX="436.0" layoutY="353.0" mnemonicParsing="false" onAction="#salirCliente" prefHeight="26.0" prefWidth="112.0" style="-fx-background-color: ddb893;" text="Salir" textFill="#724a11">
          <font>
             <Font name="Georgia" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="268.0" layoutY="23.0" text="Clientes">
+      <Label layoutX="254.0" layoutY="22.0" text="Clientes" textFill="#724a11">
          <font>
-            <Font name="Georgia" size="18.0" />
+            <Font name="Georgia Bold Italic" size="22.0" />
          </font>
       </Label>
       <TableView fx:id="tablaClientes" layoutX="9.0" layoutY="65.0" prefHeight="257.0" prefWidth="582.0">
         <columns>
-          <TableColumn fx:id="clmNombre" prefWidth="75.0" text="Nombre" />
-          <TableColumn fx:id="clmApPaterno" prefWidth="75.0" text="ApPaterno" />
-            <TableColumn fx:id="clmApMaterno" prefWidth="146.0" text="ApMaterno" />
-            <TableColumn fx:id="clmCorreo" prefWidth="154.0" text="Correo" />
-            <TableColumn fx:id="clmTellefono" prefWidth="131.0" text="Telefono" />
+          <TableColumn fx:id="clmNombre" prefWidth="91.0" style="-fx-background-color: ddb893;" text="Nombre" />
+          <TableColumn fx:id="clmApPaterno" prefWidth="107.0" style="-fx-background-color: ddb893;" text="ApPaterno" />
+            <TableColumn fx:id="clmApMaterno" prefWidth="131.0" style="-fx-background-color: ddb893;" text="ApMaterno" />
+            <TableColumn fx:id="clmCorreo" prefWidth="141.0" style="-fx-background-color: ddb893;" text="Correo" />
+            <TableColumn fx:id="clmTellefono" prefWidth="111.0" style="-fx-background-color: ddb893;" text="Telefono" />
         </columns>
       </TableView>
    </children>
