@@ -114,10 +114,6 @@ public class AdministradorPedidosController extends BaseController implements In
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
 			this.recogerDatosPedidos();
-			ObservableList<Pedido> grupo = Pedidos.getInstancia().getGrupoPedidos();
-			for (Pedido pedido : grupo) {
-				System.out.println(pedido);
-			}
 			this.clmId.setCellValueFactory(new PropertyValueFactory<>("id"));
 			this.clmDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 			this.clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));

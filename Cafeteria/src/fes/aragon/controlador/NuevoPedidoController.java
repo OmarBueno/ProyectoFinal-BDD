@@ -58,7 +58,6 @@ public class NuevoPedidoController extends BaseController implements Initializab
 			pedido.setArticulos(Pedido.getInstancia().getArticulos());
 			Double total = calcularTotal();
 			pedido.setTotal(total);
-			System.out.println(pedido.getTotal());
 			ObservableList<Pedido> grupo = Pedidos.getInstancia().getGrupoPedidos();
 			if (Pedidos.getInstancia().isModificarPedido()) {
 				Pedidos.getInstancia().getGrupoPedidos().set(Pedidos.getInstancia().getIndice(), pedido);
@@ -84,7 +83,6 @@ public class NuevoPedidoController extends BaseController implements Initializab
 			total += articulo.getCantidad() * articulo.getPrecio();
 		}
 		this.lblTotal.setText(String.valueOf(total));
-		System.out.println(total);
 		return total;
 	}
 

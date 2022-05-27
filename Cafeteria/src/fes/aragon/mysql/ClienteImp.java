@@ -28,8 +28,6 @@ public class ClienteImp<E> implements IBaseDatos<E> {
 				ct.setCorreo(resultado.getString(5));
 				ct.setContrasena(resultado.getString(6));
 				ct.setTelefono(resultado.getString(7));
-				// System.out.println(ct);
-				// buscar habitaciones de cada hotel
 				datos.add((E) ct);
 			} while (resultado.next());
 		}

@@ -14,7 +14,6 @@ public class Conexion {
 	public Conexion() throws Exception {		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		cnn = DriverManager.getConnection(url, usuario, clave);
-		System.out.println("Conexion establecida");
 	}	
 
 	public static Conexion getInstancia() throws Exception {
@@ -27,7 +26,6 @@ public class Conexion {
 	public void iniciarConexion() throws Exception{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		cnn = DriverManager.getConnection(url, usuario, clave);
-		System.out.println("Conexion establecida");
 	}
 
 

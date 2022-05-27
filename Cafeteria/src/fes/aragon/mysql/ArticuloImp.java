@@ -25,8 +25,6 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 				art.setNombre(resultado.getString(2));
 				art.setDescripcion(resultado.getString(3));
 				art.setPrecio(resultado.getDouble(4));
-				System.out.println(art);
-				// buscar habitaciones de cada hotel
 				datos.add((E) art);
 			} while (resultado.next());
 		}
@@ -55,8 +53,6 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 				art.setNombre(resultado.getString(2));
 				art.setDescripcion(resultado.getString(3));
 				art.setPrecio(resultado.getDouble(4));
-				System.out.println(art);
-				// buscar habitaciones de cada hotel
 				datos.add((E) art);
 			} while (resultado.next());
 		}
@@ -77,7 +73,6 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 		String query = "insert into articulos(nombre_ats,descripcion_ats,precio_ats) " + "values(?,?,?)";
 		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
 				Statement.RETURN_GENERATED_KEYS);
-
 		solicitud.setString(1, ats.getNombre());
 		solicitud.setString(2, ats.getDescripcion());
 		solicitud.setDouble(3, ats.getPrecio());
@@ -93,7 +88,6 @@ public class ArticuloImp<E> implements IBaseDatos<E> {
 		String query = "update articulos set nombre_ats=?,descripcion_ats=?,precio_ats=? where id_ats=?";
 		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
 				Statement.RETURN_GENERATED_KEYS);
-		System.out.println(ats.getId());
 		solicitud.setString(1, ats.getNombre());
 		solicitud.setString(2, ats.getDescripcion());
 		solicitud.setDouble(3, ats.getPrecio());

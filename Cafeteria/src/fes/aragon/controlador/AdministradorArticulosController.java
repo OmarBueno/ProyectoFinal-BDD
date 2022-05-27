@@ -121,7 +121,6 @@ public class AdministradorArticulosController extends BaseController implements 
 				}
 				Pedido.getInstancia().setTotal(total);
 				Pedido.getInstancia().setArticulos(grupo2);
-				System.out.println(Pedido.getInstancia().getArticulos());
 			}
 		}
 		grupo.clear();
@@ -132,35 +131,17 @@ public class AdministradorArticulosController extends BaseController implements 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
 			if (!estado) {
-				System.out.println(estado);
 				this.recogerDatosArticulos();
-				ObservableList<Articulo> grupo = Articulos.getInstancia().getGrupoArticulos();
-				for (Articulo art : grupo) {
-					System.out.println(art);
-				}
 			} else {
 				if (Pedidos.getInstancia().isModificarPedido()) {
-					System.out.println(estado);
 					Pedido tmp = Pedidos.getInstancia().getGrupoPedidos().get(Pedidos.getInstancia().getIndice());
 					this.recogerDatosArticulosValor(tmp.getId());
-					ObservableList<Articulo> grupo = Articulos.getInstancia().getGrupoArticulos();
-					for (Articulo art : grupo) {
-						System.out.println(art);
-					}
 					this.btnNuevoArticulo.setDisable(true);
 					this.btnEditar.setDisable(true);
 					this.btnEliminar.setDisable(true);
-
 				} else {
-					System.out.println(estado);
-					ObservableList<Articulo> grupo = Articulos.getInstancia().getGrupoArticulos();
-					for (Articulo art : grupo) {
-						System.out.println(art);
-					}
-					System.out.println("Entre");
 				}
 			}
-
 			this.clmNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 			this.clmDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
 			this.clmPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));

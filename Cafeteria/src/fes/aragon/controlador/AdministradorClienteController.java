@@ -68,7 +68,6 @@ public class AdministradorClienteController extends BaseController implements In
 			alerta.setContentText("Por favor selecciona una fila, para la modificar");
 			Optional<ButtonType> resultado = alerta.showAndWait();
 			if (resultado.get().equals(OK)) {
-
 			}
 		}
 	}
@@ -116,10 +115,6 @@ public class AdministradorClienteController extends BaseController implements In
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
 			this.recogerDatos();
-			ObservableList<Cliente> grupo = ClientesPedidos.getInstancia().getGrupoClientesPedidos();
-			for (Cliente cliente : grupo) {
-				System.out.println(cliente);
-			}
 			this.clmNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 			this.clmApPaterno.setCellValueFactory(new PropertyValueFactory<>("apPaterno"));
 			this.clmApMaterno.setCellValueFactory(new PropertyValueFactory<>("apMaterno"));
