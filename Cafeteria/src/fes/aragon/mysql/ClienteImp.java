@@ -48,7 +48,7 @@ public class ClienteImp<E> implements IBaseDatos<E> {
 	public void insertar(E obj) throws Exception {
 		Cliente cl = (Cliente) obj;
 		String query = "insert into clientes(nombre_cls,ap_paterno_cls,ap_materno_cls,correo_cls,"
-				+ "contraseña_cls,telefono_cls) values(?,?,?,?,?,?)";
+				+ "contrasena_cls,telefono_cls) values(?,?,?,?,?,?)";
 		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
 				Statement.RETURN_GENERATED_KEYS);
 		solicitud.setString(1, cl.getNombre());
@@ -67,7 +67,7 @@ public class ClienteImp<E> implements IBaseDatos<E> {
 	public void modificar(E obj) throws Exception {
 		Cliente cl = (Cliente) obj;
 		String query = "update clientes set nombre_cls=?,ap_paterno_cls=?,ap_materno_cls=?"
-				+ ",correo_cls=?,contraseña_cls=?,telefono_cls=? where id_cls=?";
+				+ ",correo_cls=?,contrasena_cls=?,telefono_cls=? where id_cls=?";
 		PreparedStatement solicitud = Conexion.getInstancia().getCnn().prepareStatement(query,
 				Statement.RETURN_GENERATED_KEYS);
 		solicitud.setString(1, cl.getNombre());

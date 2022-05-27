@@ -25,7 +25,7 @@ public class NuevoClienteController extends BaseController implements Initializa
 	@FXML
 	private TextField txtCorreo;
 	@FXML
-	private TextField txtContraseña;
+	private TextField txtContrasena;
 	@FXML
 	private TextField txtTelefono;
 	@FXML
@@ -44,7 +44,7 @@ public class NuevoClienteController extends BaseController implements Initializa
 					cl.setNombre(this.txtNombre.getText());
 					cl.setApPaterno(this.txtApPaterno.getText());
 					cl.setApMaterno(this.txtApMaterno.getText());
-					cl.setContrasena(this.txtContraseña.getText());
+					cl.setContrasena(this.txtContrasena.getText());
 					cl.setTelefono(this.txtTelefono.getText());
 					cl.setCorreo(this.txtCorreo.getText());
 					ClientesPedidos.getInstancia().getGrupoClientesPedidos()
@@ -56,7 +56,7 @@ public class NuevoClienteController extends BaseController implements Initializa
 					cl.setNombre(this.txtNombre.getText());
 					cl.setApPaterno(this.txtApPaterno.getText());
 					cl.setApMaterno(this.txtApMaterno.getText());
-					cl.setContrasena(this.txtContraseña.getText());
+					cl.setContrasena(this.txtContrasena.getText());
 					cl.setTelefono(this.txtTelefono.getText());
 					cl.setCorreo(this.txtCorreo.getText());
 					cl.setPedidos(null);
@@ -93,7 +93,7 @@ public class NuevoClienteController extends BaseController implements Initializa
 			this.txtApPaterno.setText(cl.getApPaterno());
 			this.txtApMaterno.setText(cl.getApMaterno());
 			this.txtCorreo.setText(cl.getCorreo());
-			this.txtContraseña.setText(cl.getContrasena());
+			this.txtContrasena.setText(cl.getContrasena());
 			this.txtTelefono.setText(cl.getTelefono());
 		}
 	}
@@ -115,8 +115,8 @@ public class NuevoClienteController extends BaseController implements Initializa
 			this.mensajes += "El apellido materno del cliente no es valido, es vacio\n";
 			valido = false;
 		}
-		if ((this.txtContraseña.getText() == null)
-				|| (this.txtContraseña.getText() != null && this.txtContraseña.getText().isEmpty())) {
+		if ((this.txtContrasena.getText() == null)
+				|| (this.txtContrasena.getText() != null && this.txtContrasena.getText().isEmpty())) {
 			this.mensajes += "El apellido materno del cliente no es valido, es vacio\n";
 			valido = false;
 		}

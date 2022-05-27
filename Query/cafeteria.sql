@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`clientes` (
   `ap_paterno_cls` VARCHAR(20) NOT NULL,
   `ap_materno_cls` VARCHAR(20) NOT NULL,
   `correo_cls` VARCHAR(35) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL,
-  `contraseña_cls` VARCHAR(20) NOT NULL,
+  `contrasena_cls` VARCHAR(20) NOT NULL,
   `telefono_cls` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id_cls`),
   UNIQUE INDEX `correo_cls` (`correo_cls` ASC) VISIBLE,
